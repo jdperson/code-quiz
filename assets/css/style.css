@@ -26,11 +26,15 @@ main p {
     padding-bottom: 1vh;
 }
 
-main button {
+#start {
     color: white;
     background-color: var(--purple);
     font-size: 18px;
     padding: 10px 25px;
     border: none;
     border-radius: 10px;
+}
+
+#start:active {
+    background-color: var(--pink);
 }
