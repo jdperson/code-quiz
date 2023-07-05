@@ -22,8 +22,8 @@ main {
     padding-top: 5vh;
 }
 
-main p {
-    padding-bottom: 1vh;
+#description {
+    padding-bottom: 3vh;
 }
 
 #start {
@@ -37,4 +37,12 @@ main p {
 
 #start:active {
     background-color: var(--pink);
+}
+
+.question-container {
+    display: none;
+}
+
+footer {
+    display: none;
 }
