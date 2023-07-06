@@ -4,11 +4,15 @@ var timerEl = document.querySelector("#countdown");
 var headEl = document.createElement("h1");
 var descriptionEl = document.createElement("p");
 var startBtn = document.createElement("button");
+var submitBtn = document.createElement("button");
 var listEl = document.createElement("ol");
 var choice1 = document.createElement("li");
 var choice2 = document.createElement("li");
 var choice3 = document.createElement("li");
 var choice4 = document.createElement("li");
+var containerEl = document.createElement("div");
+var labelEl = document.createElement("label");
+var inputEl = document.createElement("input");
 const correct = document.createElement("footer");
 const incorrect = document.createElement("footer");
 var questionNum = 0;
@@ -47,11 +51,39 @@ var questions = [
     ]
 ]
 
-function endQuiz(timeLeft) {
+function endQuiz() {
+    rootEl.removeChild(listEl);
+
+    rootEl.headEl.innerHTML = "All done!";
+    
+    descriptionEl.innerHTML = 'Your final score is ' + timeLeft;
+    rootEl.append(descriptionEl);
+    rootEl.append(containerEl);
+    rootEl.append(submitBtn);
+
+    submitBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        var initials = document.querySelector("#initials");
+
+        if (initials === "") {
+            displayMessage("error", "Initials must be entered");
+        }
+        if (initials.length > 3) {
+            displayMessage("error", "3 initials max");
+        }
+
+        initials = initials.toUpperCase();
+
+        localStorage.setItem("initials", initials);
+        renderLastRegistered();
+
+        window.location.replace("./assets/scores.html");
+    })
     
 }
 
-function displayMessage(bool) {
+function displayJudgement(bool) {
     if (bool) { correct.style.display = "block"; }
     else      { incorrect.style.display = "block"; }
 }
@@ -73,57 +105,59 @@ function startTimer() {
         switch (questionNum) {
             case (0):
                 if (event.target === listEl.children[2]) {
-                    displayMessage(true);
+                    displayJudgement(true);
                     nextQuestion();
                     break;
                 } else {
                     timeLeft -= 6;
-                    displayMessage(false);
+                    displayJudgement(false);
                     nextQuestion();
                     break;
                 }
             case (1):
                 if (event.target === listEl.children[2]) {
-                    displayMessage(true);
+                    displayJudgement(true);
                     nextQuestion();
                     break;
                 } else {
                     timeLeft -= 6;
-                    displayMessage(false);
+                    displayJudgement(false);
                     nextQuestion();
                     break;
                 }
             case (2):
                 if (event.target === listEl.children[3]) {
-                    displayMessage(true);
+                    displayJudgement(true);
                     nextQuestion();
                     break;
                 } else {
                     timeLeft -= 6;
-                    displayMessage(false);
+                    displayJudgement(false);
                     nextQuestion();
                     break;
                 }
             case (3):
                 if (event.target === listEl.children[2]) {
-                    displayMessage(true);
+                    displayJudgement(true);
                     nextQuestion();
                     break;
                 } else {
                     timeLeft -= 6;
-                    displayMessage(false);
+                    displayJudgement(false);
                     nextQuestion();
                     break;
                 }
             case (4):
                 if (event.target === listEl.children[3]) {
-                    displayMessage(true);
-                    endQuiz(timeLeft);
+                    displayJudgement(true);
+                    clearInterval(timeInterval);
+                    endQuiz();
                     break;
                 } else {
                     timeLeft -= 6;
-                    displayMessage(false);
-                    endQuiz(timeLeft);
+                    displayJudgement(false);
+                    clearInterval(timeInterval);
+                    endQuiz();
                     break;
                 }
         }
@@ -133,7 +167,10 @@ function startTimer() {
         correct.style.display = "none";
         incorrect.style.display = "none";
 
-        if (timeLeft >= 1) { timeLeft--; }
+        timerEl.innerHTML = timeLeft;
+        if (timeLeft >= 1) {
+            timeLeft--;
+        }
         else {
             clearInterval(timeInterval);
             endQuiz();
@@ -166,11 +203,17 @@ function startQuiz() {
 headEl.innerHTML = "Coding Quiz Challenge";
 descriptionEl.innerHTML = "Try to answer the code-related questions within the time limit.<br/> Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
 startBtn.innerHTML = "Start Quiz";
-startBtn.setAttribute("id", "start");
-
+submitBtn.innerHTML = "Submit";
+labelEl.innerHTML = "Enter initials: ";
 correct.innerHTML = "Correct!";
-correct.style.display = "none";
 incorrect.innerHTML = "Wrong!";
+
+labelEl.setAttribute("for", "initials");
+inputEl.setAttribute("type", "text");
+inputEl.setAttribute("name", "initials");
+inputEl.setAttribute("id", "initials");
+
+correct.style.display = "none";
 incorrect.style.display = "none";
 
 rootEl.append(headEl);
@@ -178,5 +221,7 @@ rootEl.append(descriptionEl);
 rootEl.append(startBtn);
 rootEl.append(correct);
 rootEl.append(incorrect);
+containerEl.append(labelEl);
+containerEl.append(inputEl);
 
 startBtn.addEventListener("click", startQuiz);

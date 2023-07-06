@@ -26,7 +26,7 @@ main {
     padding-bottom: 3vh;
 }
 
-#start {
+button {
     color: white;
     background-color: var(--purple);
     font-size: 18px;
@@ -35,7 +35,7 @@ main {
     border-radius: 10px;
 }
 
-#start:active {
+button:active {
     background-color: var(--pink);
 }
 
