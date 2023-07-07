@@ -51,10 +51,10 @@ var questions = [
     ]
 ]
 
-function endQuiz() {
+function endQuiz(timeLeft) {
     rootEl.removeChild(listEl);
 
-    rootEl.headEl.innerHTML = "All done!";
+    headEl.innerHTML = "All done!";
     
     descriptionEl.innerHTML = 'Your final score is ' + timeLeft;
     rootEl.append(descriptionEl);
@@ -73,10 +73,8 @@ function endQuiz() {
             displayMessage("error", "3 initials max");
         }
 
-        initials = initials.toUpperCase();
-
         localStorage.setItem("initials", initials);
-        renderLastRegistered();
+        localStorage.setItem("score", timeLeft);
 
         window.location.replace("./assets/scores.html");
     })
@@ -89,17 +87,18 @@ function displayJudgement(bool) {
 }
 
 function nextQuestion() {
-    headEl.innerHTML = questions[questionNum[0]];
-    listEl.children[0].innerHTML = questions[questionNum[1]];
-    listEl.children[1].innerHTML = questions[questionNum[2]];
-    listEl.children[2].innerHTML = questions[questionNum[3]];
-    listEl.children[3].innerHTML = questions[questionNum[4]];
+    headEl.innerHTML = questions[questionNum][0];
+    choice1.innerHTML = questions[questionNum][1];
+    choice2.innerHTML = questions[questionNum][2];
+    choice3.innerHTML = questions[questionNum][3];
+    choice4.innerHTML = questions[questionNum][4];
+    questionNum++;
 }
 
 function startTimer() {
     var timeLeft = 60;
 
-    listEl.children.addEventListener("click", function (event) {
+    listEl.addEventListener("click", function (event) {
         event.preventDefault();
 
         switch (questionNum) {
@@ -151,13 +150,13 @@ function startTimer() {
                 if (event.target === listEl.children[3]) {
                     displayJudgement(true);
                     clearInterval(timeInterval);
-                    endQuiz();
+                    endQuiz(timeLeft);
                     break;
                 } else {
                     timeLeft -= 6;
                     displayJudgement(false);
                     clearInterval(timeInterval);
-                    endQuiz();
+                    endQuiz(timeLeft);
                     break;
                 }
         }
@@ -173,7 +172,7 @@ function startTimer() {
         }
         else {
             clearInterval(timeInterval);
-            endQuiz();
+            endQuiz(timeLeft);
         }
     }, 1000);
 }
@@ -181,18 +180,23 @@ function startTimer() {
 function startQuiz() {
     rootEl.removeChild(descriptionEl);
     rootEl.removeChild(startBtn);
+    
+    choice1.className = "choice";
+    choice2.className = "choice";
+    choice3.className = "choice";
+    choice4.className = "choice";
+
+    headEl.innerHTML = "Commonly used data types DO Not Include:";
+
+    choice1.innerHTML = "strings";
+    choice2.innerHTML = "booleans";
+    choice3.innerHTML = "alerts";
+    choice4.innerHTML = "numbers";
+
     listEl.append(choice1);
     listEl.append(choice2);
     listEl.append(choice3);
     listEl.append(choice4);
-    listEl.children.className = "choice";
-
-    headEl.innerHTML = "Commonly used data types DO Not Include:";
-
-    listEl.children[0].innerHTML = "strings";
-    listEl.children[1].innerHTML = "booleans";
-    listEl.children[2].innerHTML = "alerts";
-    listEl.children[3].innerHTML = "numbers";
 
     rootEl.append(listEl);
     
