@@ -68,15 +68,17 @@ function endQuiz(timeLeft) {
 
         if (initials === "") {
             displayMessage("error", "Initials must be entered");
+            return;
         }
         if (initials.length > 3) {
             displayMessage("error", "3 initials max");
+            return;
         }
 
         localStorage.setItem("initials", initials);
         localStorage.setItem("score", timeLeft);
 
-        window.location.replace("./assets/scores.html");
+        window.location.href = "./assets/scores/scores.html";
     })
     
 }
