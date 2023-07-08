@@ -2,20 +2,18 @@ var rootEl = document.getElementById("root");
 var backBtn = document.getElementById("back");
 var clearBtn = document.getElementById("clear");
 var listEl = document.createElement("ol");
+var newScore = document.createElement("li");
+var initials = localStorage.getItem("initials");
+var score = localStorage.getItem("score");
 
-function renderLastRegistered() {
-    var initials = localStorage.getItem("initials");
-    var score = localStorage.getItem("score");
 
-    if (rootEl === "") { rootEl.append(listEl); }
 
-    var newScore = document.createElement("li");
-    newScore.textContent = initials + " - " + score;
+newScore.textContent = initials + " - " + score;
 
-    listEl.append(newScore);
-}
+listEl.append(newScore);
+rootEl.append(listEl);
 
-renderLastRegistered();
+
 
 backBtn.addEventListener("click", function (event) {
     event.preventDefault();
@@ -24,5 +22,5 @@ backBtn.addEventListener("click", function (event) {
 
 clearBtn.addEventListener("click", function(event) {
     event.preventDefault();
-    rootEl.removeChild("ol");
+    rootEl.removeChild(listEl);
 })

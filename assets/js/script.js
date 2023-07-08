@@ -64,7 +64,7 @@ function endQuiz(timeLeft) {
     submitBtn.addEventListener("click", function(event) {
         event.preventDefault();
 
-        var initials = document.querySelector("#initials");
+        var initials = document.querySelector("#initials").value;
 
         if (initials === "") {
             displayMessage("error", "Initials must be entered");
