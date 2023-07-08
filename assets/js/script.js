@@ -103,7 +103,7 @@ function nextQuestion() {
 }
 
 function startTimer() {
-    var timeLeft = 999999;
+    var timeLeft = 75;
 
     listEl.addEventListener("click", function (event) {
         event.preventDefault();
@@ -115,7 +115,7 @@ function startTimer() {
                     nextQuestion();
                     break;
                 } else {
-                    timeLeft -= 6;
+                    timeLeft -= 10;
                     displayJudgement(false);
                     nextQuestion();
                     break;
@@ -126,7 +126,7 @@ function startTimer() {
                     nextQuestion();
                     break;
                 } else {
-                    timeLeft -= 6;
+                    timeLeft -= 10;
                     displayJudgement(false);
                     nextQuestion();
                     break;
@@ -137,7 +137,7 @@ function startTimer() {
                     nextQuestion();
                     break;
                 } else {
-                    timeLeft -= 6;
+                    timeLeft -= 10;
                     displayJudgement(false);
                     nextQuestion();
                     break;
@@ -148,7 +148,7 @@ function startTimer() {
                     nextQuestion();
                     break;
                 } else {
-                    timeLeft -= 6;
+                    timeLeft -= 10;
                     displayJudgement(false);
                     nextQuestion();
                     break;
@@ -160,7 +160,7 @@ function startTimer() {
                     endQuiz(timeLeft);
                     break;
                 } else {
-                    timeLeft -= 6;
+                    timeLeft -= 10;
                     displayJudgement(false);
                     clearInterval(timeInterval);
                     endQuiz(timeLeft);
