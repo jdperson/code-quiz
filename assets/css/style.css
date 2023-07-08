@@ -1,6 +1,6 @@
 :root {
-    --pink: rgb(240, 95, 240);
-    --purple: rgb(60, 0, 170);
+    --pink: rgb(220, 96, 252);
+    --purple: rgb(80, 23, 187);
 }
 
 body {
@@ -12,14 +12,19 @@ a {
     color: var(--pink);
 }
 
-header p{
+header p {
     float: right;
     color: gray;
+    margin: 0;
 }
 
 main {
+    padding-top: 5rem;
     text-align: center;
-    padding-top: 5vh;
+}
+
+main p {
+    color: gray;
 }
 
 #description {
@@ -35,7 +40,7 @@ button {
     border-radius: 10px;
 }
 
-button:active {
+button:hover {
     background-color: var(--pink);
 }
 
@@ -43,6 +48,77 @@ button:active {
     display: none;
 }
 
+.choice {
+    list-style-position: inside;
+    text-align: start;
+    background-color: var(--purple);
+    color: white;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    width: 170px;
+}
+
+input {
+    margin-bottom: 35px;
+}
+
+.choice:hover {
+    background-color: var(--pink);  
+}
+
 footer {
     display: none;
+    color: gray;
+    font-size: 32px;
+    border-top: 2px solid gray;
+    text-align: start;
+    padding-left: 15px;
+    position: absolute;
+    top: 41rem;
+    width: 85%;
+}
+
+@media screen and (min-width: 576px) {
+    footer {
+        top: 35rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    main {
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    footer {
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    main {
+        margin-left: 15vw;
+        margin-right: 15vw;
+    }
+
+    .choice {
+        padding: 7px;
+    }
+
+    footer {
+        top: 30rem;
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin-left: 25vw;
+        margin-right: 25vw;
+    }
+
+    footer {
+        width: 40%;
+    }
 }

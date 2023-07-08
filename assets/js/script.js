@@ -84,8 +84,13 @@ function endQuiz(timeLeft) {
 }
 
 function displayJudgement(bool) {
-    if (bool) { correct.style.display = "block"; }
-    else      { incorrect.style.display = "block"; }
+    if (bool) {
+        incorrect.style.display = "none";
+        correct.style.display = "block";
+    } else {
+        correct.style.display = "none";
+        incorrect.style.display = "block";
+    }
 }
 
 function nextQuestion() {
@@ -98,7 +103,7 @@ function nextQuestion() {
 }
 
 function startTimer() {
-    var timeLeft = 60;
+    var timeLeft = 999999;
 
     listEl.addEventListener("click", function (event) {
         event.preventDefault();
@@ -165,9 +170,6 @@ function startTimer() {
     })
 
     var timeInterval = setInterval(function () {
-        correct.style.display = "none";
-        incorrect.style.display = "none";
-
         timerEl.innerHTML = timeLeft;
         if (timeLeft >= 1) {
             timeLeft--;
@@ -218,6 +220,8 @@ labelEl.setAttribute("for", "initials");
 inputEl.setAttribute("type", "text");
 inputEl.setAttribute("name", "initials");
 inputEl.setAttribute("id", "initials");
+headEl.setAttribute("id", "title");
+startBtn.setAttribute("id", "start");
 
 correct.style.display = "none";
 incorrect.style.display = "none";
