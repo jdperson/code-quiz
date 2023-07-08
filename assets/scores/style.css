@@ -1,0 +1,14 @@
+body {
+    padding-top: 15vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+li {
+    text-align: start;
+    list-style-position: inside;
+    background-color: rgba(190, 120, 255, 0.603);
+    color: rgb(53, 0, 88);
+    padding: 7px;
+    width: 200px;
+}
