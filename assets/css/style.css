@@ -124,10 +124,6 @@ footer {
 }
 
 @media screen and (max-width: 576px) {
-    #root {
-        top: 5vh;
-    }
-
     h1 {
         margin-left: 25px;
     }
@@ -140,6 +136,5 @@ footer {
 
     footer {
         width: 350px;
-        text-align: center;
     }
 }
