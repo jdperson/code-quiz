@@ -42,6 +42,10 @@ button {
     margin-left: 10px;
 }
 
+button:active {
+    background-color: var(--pink);
+}
+
 @media screen and (max-width: 992px) {
     body {
         margin: 15vh 10%;

@@ -1,4 +1,6 @@
-// Global Definitions
+// ------------------- Global Definitions -------------------
+    // Comment follow-along starts at 220
+
 var rootEl = document.querySelector("#root");
 var timerEl = document.querySelector("#countdown");
 var headEl = document.createElement("h1");
@@ -84,6 +86,9 @@ function endQuiz(timeLeft) {
         localStorage.setItem("initials", initials);
         localStorage.setItem("score", timeLeft);
 
+        //  The code above preps the score submission screen then waits for the
+        //  user to click submit to then send them to the High Scores page.
+
         window.location.href = "./assets/scores/scores.html";
     })
     
@@ -109,8 +114,9 @@ function nextQuestion() {
 }
 
 function startTimer() {
-    var timeLeft = 10000;
+    var timeLeft = 75;
 
+    //  This looks at what question the user is on, what the right answer is, and what the user selected
     listEl.addEventListener("click", function (event) {
         event.preventDefault();
 
@@ -209,11 +215,16 @@ function startQuiz() {
     listEl.append(choice4);
 
     rootEl.append(listEl);
-    
+
+    //  The first question is prepared, now the timer starts    -> 119
     startTimer();
 };
 
-// Launch Procedure
+// ------------------- Launch Procedure -------------------
+
+    //  This is where content and data for the start screen is prepared
+    //  and added to the page until...
+
 headEl.innerHTML = "Coding Quiz Challenge";
 descriptionEl.innerHTML = "Try to answer the following code-related questions within the time limit.<br/> Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
 startBtn.innerHTML = "Start Quiz";
@@ -241,4 +252,5 @@ rootEl.append(incorrect);
 containerEl.append(labelEl);
 containerEl.append(inputEl);
 
+    //  the user wants to start.   -> 196
 startBtn.addEventListener("click", startQuiz);
