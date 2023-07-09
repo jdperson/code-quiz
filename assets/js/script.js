@@ -53,13 +53,19 @@ var questions = [
 
 function endQuiz(timeLeft) {
     rootEl.removeChild(listEl);
-
-    headEl.innerHTML = "All done!";
     
+    headEl.innerHTML = "All done!";
     descriptionEl.innerHTML = 'Your final score is ' + timeLeft;
+
     rootEl.append(descriptionEl);
     rootEl.append(containerEl);
     rootEl.append(submitBtn);
+
+    inputEl.addEventListener("click", function(event) {
+        event.preventDefault();
+        correct.style.display = "none";
+        incorrect.style.display = "none";
+    })
 
     submitBtn.addEventListener("click", function(event) {
         event.preventDefault();
@@ -103,7 +109,7 @@ function nextQuestion() {
 }
 
 function startTimer() {
-    var timeLeft = 75;
+    var timeLeft = 10000;
 
     listEl.addEventListener("click", function (event) {
         event.preventDefault();
@@ -157,13 +163,13 @@ function startTimer() {
                 if (event.target === listEl.children[3]) {
                     displayJudgement(true);
                     clearInterval(timeInterval);
-                    endQuiz(timeLeft);
+                    endQuiz(timeLeft + 1);
                     break;
                 } else {
                     timeLeft -= 10;
                     displayJudgement(false);
                     clearInterval(timeInterval);
-                    endQuiz(timeLeft);
+                    endQuiz(timeLeft + 1);
                     break;
                 }
         }
@@ -209,7 +215,7 @@ function startQuiz() {
 
 // Launch Procedure
 headEl.innerHTML = "Coding Quiz Challenge";
-descriptionEl.innerHTML = "Try to answer the code-related questions within the time limit.<br/> Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
+descriptionEl.innerHTML = "Try to answer the following code-related questions within the time limit.<br/> Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
 startBtn.innerHTML = "Start Quiz";
 submitBtn.innerHTML = "Submit";
 labelEl.innerHTML = "Enter initials: ";
@@ -217,6 +223,7 @@ correct.innerHTML = "Correct!";
 incorrect.innerHTML = "Wrong!";
 
 labelEl.setAttribute("for", "initials");
+labelEl.setAttribute("id", "initials-label")
 inputEl.setAttribute("type", "text");
 inputEl.setAttribute("name", "initials");
 inputEl.setAttribute("id", "initials");
